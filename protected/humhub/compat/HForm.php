@@ -347,16 +347,11 @@ class HForm extends \yii\base\Component
 
                 if (!empty($definition['hint']) && $field instanceof ActiveField) {
                     $field->hint(Html::encode($definition['hint'], false));
-                }
-
-                return $field;
-            } else {
-                return "No type found for: FieldName: " . $name . " Forms: " . print_r($forms, 1) . "<br>";
-            }
-        } else {
-            return "No model for: FieldName: " . $name . " Forms: " . print_r($forms, 1) . "<br>";
-        }
-
-        return $output;
+                    return $field;
+                } else {
+                    if (empty($model)) {
+                        return "No model for: FieldName: " . $name . " Forms: " . print_r($forms, 1) . "<br>";
+                    } else {
+                        return "No type found for: FieldName: " . $name . " Forms: " . print_r($forms, 1) . "<br>";
     }
 }

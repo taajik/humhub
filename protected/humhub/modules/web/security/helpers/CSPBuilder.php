@@ -93,10 +93,11 @@ class CSPBuilder
      * @throws \TypeError
      */
     public function compile()
-    {
-        $ruleKeys = \array_keys($this->policies);
-        if (\in_array('report-only', $ruleKeys)) {
-            $this->reportOnly = !!$this->policies['report-only'];
+{
+    $ruleKeys = \array_keys($this->policies);
+    if (\in_array('report-only', $ruleKeys)) {
+        $this->reportOnly = (bool) $this->policies['report-only'];
+
         } else {
             $this->reportOnly = false;
         }

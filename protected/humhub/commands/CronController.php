@@ -90,14 +90,12 @@ class CronController extends Controller
      */
     protected function runHourly($force = false)
     {
-        $lastRun = (int)Yii::$app->settings->getUncached('cronLastHourlyRun');
-
-        if (!empty($lastRun) && $force !== true) {
-            // Execute only once a hour
-            if (time() < $lastRun + 3600) {
-                return;
-            }
+        
+        $lastRun = (int) Yii::$app->settings->getUncached('cronLastHourlyRun');
+        if (!empty($lastRun) && ($force !== true) && (time() < $lastRun + 3600)) {
+            return;
         }
+        
 
         $this->trigger(self::EVENT_ON_HOURLY_RUN);
         Yii::$app->settings->set('cronLastHourlyRun', time());

@@ -79,7 +79,7 @@ class ArrayObject implements IteratorAggregate, ArrayAccess, Countable
     public function __isset($key)
     {
         if ($this->flag == self::ARRAY_AS_PROPS) {
-            return $this->offsetExists($key);
+            $this->offsetExists($key);
         }
         if (in_array($key, $this->protectedProperties)) {
             throw new InvalidArgumentException('$key is a protected property, use a different key');
@@ -98,7 +98,8 @@ class ArrayObject implements IteratorAggregate, ArrayAccess, Countable
     public function __set($key, $value)
     {
         if ($this->flag == self::ARRAY_AS_PROPS) {
-            return $this->offsetSet($key, $value);
+            $this->offsetSet($key, $value);
+    
         }
         if (in_array($key, $this->protectedProperties)) {
             throw new InvalidArgumentException('$key is a protected property, use a different key');
